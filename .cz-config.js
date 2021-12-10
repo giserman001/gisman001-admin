@@ -13,19 +13,19 @@ module.exports = {
     { value: 'revert', name: 'revert: 版本回退' },
     { value: 'build', name: 'build: 打包' },
   ],
-  // override the messages, defaults are as follows
+  // 步骤
   messages: {
     type: "请选择提交类型:",
-    scope: '\n请输入修改的范围(可选):',
-    customScope: '请输入修改的范围(可选)\n',
-    subject: '请简要描述提交(必填)\n',
-    body: '请输入详细描述(可选), 使用“|”来换行:\n',
-    footer: '请输入要关闭的issue(可选). E.g.: #31, #34:\n',
+    // scope: '请输入修改的范围(可选)',
+    customScope: '请输入修改的范围(可选)',
+    subject: '请简要描述提交(必填)',
+    body: '请输入详细描述(可选), 使用“|”来换行',
+    footer: '请输入要关闭的issue(可选)',
     confirmCommit: '确认要使用已上信息提交?(y/n)',
   },
   allowCustomScopes: true,
-  // 设置选填
-  skipQuestions: ['body', 'footer', 'scope', 'customScope'],
-  // limit subject length
-  subjectLimit: 100,
+  // 跳过步骤
+  // skipQuestions: ['body', 'footer', 'scope'],
+  skipQuestions: ['body', 'footer', 'customScope'],
+  subjectLimit: 72,
 };
