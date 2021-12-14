@@ -22,6 +22,8 @@ module.exports = {
         'revert', // 'revert: 版本回退'
         'build' // 'build: 打包'
       ]
-    ]
+    ],
+    // subject 大小写不做校验
+    'subject-case': [0]
   }
 }
