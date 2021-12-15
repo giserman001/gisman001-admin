@@ -1,0 +1,52 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* 使页面上的字体抗锯齿,使用后字体看起来会更清晰舒服。*/
+  -webkit-font-smoothing: antialiased; /* 谷歌，苹果 */
+  -moz-osx-font-smoothing: grayscale; /* 火狐 */
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, Arial, sans-serif;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ' ';
+    clear: both;
+    height: 0;
+  }
+}
