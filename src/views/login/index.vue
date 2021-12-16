@@ -1,39 +1,33 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" >
+    <el-form class="login-form" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
       <el-form-item prop="username">
         <span class="svg-container">
-          <el-icon>
-            <Avatar />
-          </el-icon>
+          <svg-icon icon="user"></svg-icon>
         </span>
         <el-input
           placeholder="username"
           name="username"
           type="text"
+          v-model="loginForm.username"
         />
       </el-form-item>
-
       <el-form-item prop="password">
         <span class="svg-container">
-          <el-icon>
-            <Avatar />
-          </el-icon>
+          <svg-icon icon="password"></svg-icon>
         </span>
         <el-input
           placeholder="password"
           name="password"
+          v-model="loginForm.password"
         />
         <span class="show-pwd">
-          <el-icon>
-            <avatar />
-          </el-icon>
+          <svg-icon icon="eye"></svg-icon>
         </span>
       </el-form-item>
-
       <el-button type="primary" style="width: 100%; margin-bottom: 30px"
         >登录</el-button
       >
@@ -42,7 +36,18 @@
 </template>
 
 <script setup>
-
+import { ref } from 'vue'
+import { validatePassword } from './rules'
+// 表单数据
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+// 验证规则
+const loginRules = ref({
+  username: [{ required: true, message: '用户姓名必填', trigger: 'blur' }],
+  password: [{ required: true, validator: validatePassword(), trigger: 'blur' }]
+})
 </script>
 
 <style lang="scss" scoped>
