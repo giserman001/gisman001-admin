@@ -2,12 +2,17 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 /**
  * 公开路由表
-*/
+ */
 const publicRoutes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/login/index.vue')
+    component: () =>
+      import(/* webpackChunkName: "login" */ '../views/login/index.vue')
+  },
+  {
+    path: '/',
+    component: () => import('@/layout/index')
   }
   // {
   //   path: '/about',

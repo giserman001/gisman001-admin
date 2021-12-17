@@ -8,6 +8,8 @@ import installElementPlusIcon from './plugins/elementIcons'
 import './styles/index.scss'
 // 导入自定义svg
 import installIcons from '@/icons'
+// 全局导航守卫-全局用户登录状态拦截
+import './permission'
 
 const app = createApp(App)
 installElementPlus(app)

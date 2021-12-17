@@ -1,6 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" :model="loginForm" :rules="loginRules">
+    <el-form
+      ref="loginFromRef"
+      class="login-form"
+      :model="loginForm"
+      :rules="loginRules"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -22,13 +27,20 @@
         <el-input
           placeholder="password"
           name="password"
+          :type="passwordType"
           v-model="loginForm.password"
         />
-        <span class="show-pwd">
-          <svg-icon icon="eye"></svg-icon>
+        <span class="show-pwd" @click="onChangePwdType">
+          <svg-icon
+            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+          ></svg-icon>
         </span>
       </el-form-item>
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px"
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handleLogin"
         >登录</el-button
       >
     </el-form>
@@ -38,6 +50,8 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rules'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 // 表单数据
 const loginForm = ref({
   username: 'super-admin',
@@ -48,6 +62,39 @@ const loginRules = ref({
   username: [{ required: true, message: '用户姓名必填', trigger: 'blur' }],
   password: [{ required: true, validator: validatePassword(), trigger: 'blur' }]
 })
+// 处理密码框文本显示
+const passwordType = ref('password')
+// template中使用的方法，直接声明即可
+const onChangePwdType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
+}
+
+// 登录动作处理
+const loading = ref(false)
+const loginFromRef = ref(null)
+const store = useStore()
+const router = useRouter()
+const handleLogin = () => {
+  loginFromRef.value.validate((valid) => {
+    if (!valid) return
+    loading.value = true
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {
+        loading.value = false
+        // TODO: 登录后操作
+        router.push('/')
+      })
+      .catch((err) => {
+        console.log(err)
+        loading.value = false
+      })
+  })
+}
 </script>
 
 <style lang="scss" scoped>
