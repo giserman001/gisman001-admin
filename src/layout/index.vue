@@ -1,7 +1,11 @@
 <template>
   <div class="app-wrapper">
     <!-- 左侧 menu -->
-    <sidebar id="guide-sidebar" class="sidebar-container" />
+    <sidebar
+      id="guide-sidebar"
+      class="sidebar-container"
+      :style="{ backgroundColor: Variables.menuBg }"
+    />
     <div class="main-container">
       <div class="fixed-header">
         <!-- 顶部的 navbar -->
@@ -18,6 +22,8 @@ import {} from 'vue'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
+import Variables from '@/styles/variables.scss'
+console.log(Variables, 'Variables')
 </script>
 
 <style lang="scss" scoped>
