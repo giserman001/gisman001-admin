@@ -48,6 +48,9 @@ export function generateMenus(routes, basePath = '') {
       result.push(...generateMenus(item.children))
       return
     }
+
+    // (不存在children 存在meta || 存在children && 存在meta)
+
     // 合并 path 作为跳转路径
     const routePath = path.resolve(basePath, item.path)
     // 路由分离之后，存在同名父路由的情况，需要单独处理
@@ -67,7 +70,7 @@ export function generateMenus(routes, basePath = '') {
     }
 
     // 存在 children 进入迭代到children
-    if (item.children) {
+    if (!isNull(item.children)) {
       route.children.push(...generateMenus(item.children, route.path))
     }
   })

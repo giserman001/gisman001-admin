@@ -1,5 +1,8 @@
 <template>
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper"
+    :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']"
+  >
     <!-- 左侧 menu -->
     <sidebar
       id="guide-sidebar"
@@ -23,7 +26,6 @@ import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
 import Variables from '@/styles/variables.scss'
-console.log(Variables, 'Variables')
 </script>
 
 <style lang="scss" scoped>
@@ -43,5 +45,9 @@ console.log(Variables, 'Variables')
   z-index: 9;
   // 通过 #{} 插值语句可以在选择器或属性名中使用变量 详情：https://www.sass.hk/docs/  插值语句
   width: calc(100% - #{$sideBarWidth});
+  transition: width #{$sideBarDuration};
+}
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});
 }
 </style>
