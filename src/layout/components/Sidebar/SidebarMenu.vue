@@ -26,7 +26,7 @@ import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
-  console.log(filterRoutes, 'filterRoutes')
+  // console.log(filterRoutes, 'filterRoutes')
   return generateMenus(filterRoutes)
 })
 const route = useRoute()
